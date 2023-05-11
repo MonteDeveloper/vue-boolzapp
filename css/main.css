@@ -77,6 +77,10 @@ img[alt="profileImage"]{
     height: 50px;
 }
 
+.my-chatBarHeight{
+    height: 60px;
+}
+
 .my-topBarHeight .fa-solid{
     width: 25px;
     text-align: center;
