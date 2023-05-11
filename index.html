@@ -34,8 +34,8 @@
             </section>
             
             <!-- ACTIVE NOTIFICATION -->
-            <section id="activeNotificationSection">
-                <div class="d-flex align-items-center p-2 my-bgInfo">
+            <section>
+                <div class="d-flex align-items-center my-bgInfo px-2" id="activeNotificationSection">
                     <i class="fa-solid fa-bell-slash my-textInfo bg-white"></i>
                     <div class="d-flex flex-column justify-content-center p-1">
                         <span>Ricevi notifiche di nuovi messaggi</span>
@@ -45,7 +45,7 @@
             </section>
 
             <!-- SEARCHBAR -->
-            <section>
+            <section id="searchBarSection">
                 <div class="p-2 my-bgSecondary">
                     <div class="my-middleBox flex-fill">
                         <i class="fa fa-search"></i>
@@ -55,38 +55,25 @@
             </section>
 
             <!-- CHAT LIST -->
-            <section>
-                <div class="d-flex my-chatBarHeight justify-content-between my-bgActive p-2">
-                    <div class="d-flex">
+            <section id="chatListSection">
+                <div v-for="(chat, index) in chatList">
+                    <div class="d-flex my-chatBarHeight justify-content-between p-2" :class="{'my-bgActive': !index}">
+                        <div class="d-flex">
+                            <div>
+                                <img :src="chat.imagePath" alt="profileImage">
+                            </div>
+                            <div class="d-flex flex-column justify-content-center p-2">
+                                <span>{{chat.name}}</span>
+                                <small class="my-textTertiary">Ultimo messaggio inviato</small>
+                            </div>
+                        </div>
                         <div>
-                            <img src="./img/avatar_1.jpg" alt="profileImage">
-                        </div>
-                        <div class="d-flex flex-column justify-content-center p-2">
-                            <span>Michele</span>
-                            <small class="my-textTertiary">Ultimo messaggio inviato</small>
+                            <span class="my-textSecondary">12:00</span>
                         </div>
                     </div>
-                    <div>
-                        <span class="my-textSecondary">12:00</span>
-                    </div>
+                    <hr class="my-textTertiary m-0">
                 </div>
-                <hr class="my-textTertiary m-0">
-
-                <div class="d-flex my-chatBarHeight justify-content-between my-bgPrimary p-2">
-                    <div class="d-flex">
-                        <div>
-                            <img src="./img/avatar_1.jpg" alt="profileImage">
-                        </div>
-                        <div class="d-flex flex-column justify-content-center p-2">
-                            <span>Michele</span>
-                            <small class="my-textTertiary">Ultimo messaggio inviato</small>
-                        </div>
-                    </div>
-                    <div>
-                        <span class="my-textSecondary">12:00</span>
-                    </div>
-                </div>
-                <hr class="my-textTertiary m-0">
+                
             </section>
         </div>
 
@@ -140,7 +127,7 @@
                     <div class="d-flex my-2">
                         <div class="d-flex justify-content-between my-bgPrimary rounded">
                             <p class="m-2">
-                                Ricordati di stendere i panni
+                                Tutto fatto!
                             </p>
                             <div class="d-flex flex-column justify-content-end me-1">
                                 <small class="my-textTertiary">16:15</small>

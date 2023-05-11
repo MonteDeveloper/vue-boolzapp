@@ -100,6 +100,15 @@ img[alt="profileImage"]{
 
 }
 
+#activeNotificationSection{
+    height: 50px;
+}
+
+#chatListSection{
+    height: calc(100vh - 100px - 25px - 16px);
+    overflow-y: auto;
+}
+
 input{
     font-size: .7rem !important;
 }
