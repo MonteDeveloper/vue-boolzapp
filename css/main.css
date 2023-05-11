@@ -1,0 +1,49 @@
+
+/* ? COLORS----------------------------------- */
+.my-bgPrimary{
+    background-color: white;
+}
+
+.my-bgSecondary{
+    background-color: #dddddd;
+}
+
+.my-bgActive{
+    background-color: #e9ebeb;
+}
+
+.my-bgInfo{
+    background-color: #8edafc;
+}
+
+.my-bgMessage{
+    background-color: #d5f9ba;
+}
+
+.my-textPrimary{
+    color: black;
+}
+
+.my-textSecondary{
+    color: #b1b1b1;
+}
+
+.my-textTertiary{
+    color: #cdced4;
+}
+
+/* ? IMAGES----------------------------------- */
+img[alt="profileImage"]{
+    clip-path: circle();
+    height: 100%;
+}
+
+/* ? SIZES------------------------------------ */
+.my-topBarHeight{
+    height: 50px;
+}
+
+.my-topBarHeight .fa-solid{
+    width: 25px;
+    text-align: center;
+}
