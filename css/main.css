@@ -1,3 +1,7 @@
+body{
+    font-size: .7rem !important;
+    font-weight: 500 !important;
+}
 
 /* ? COLORS----------------------------------- */
 .my-bgPrimary{
@@ -32,6 +36,36 @@
     color: #cdced4;
 }
 
+.my-textInfo{
+    color: #8edafc;
+}
+
+/* ? SEARCHBAR----------------------------- */
+.my-middleBox{
+    position: relative;
+}
+
+.my-middleBox .fa-search{
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    transform: translate(0, -50%);
+    color: #b1b1b1;
+}
+
+.my-middleBox input{
+    height: 25px;
+    text-indent: 30px;
+    border-radius: 5px;
+    background-color: white !important;
+    border: none !important;
+    font-size: .7rem;
+}
+
+.my-middleBox input:focus{
+    box-shadow: none !important;
+}
+
 /* ? IMAGES----------------------------------- */
 img[alt="profileImage"]{
     clip-path: circle();
@@ -46,4 +80,12 @@ img[alt="profileImage"]{
 .my-topBarHeight .fa-solid{
     width: 25px;
     text-align: center;
+}
+
+.fa-bell-slash{
+    clip-path: circle();
+    height: 35px;
+    width: 35px;
+    text-align: center;
+    line-height: 35px !important;
 }
