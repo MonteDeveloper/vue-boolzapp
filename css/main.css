@@ -97,6 +97,7 @@ img[alt="profileImage"]{
 #chatBoxSection{
     height: calc(100vh - 100px);
     background-image: url("../img/mine.jpg");
+    overflow-y: auto;
 
 }
 
@@ -116,4 +117,20 @@ img[alt="profileImage"]{
 
 input{
     font-size: .7rem !important;
+}
+
+.my-message{
+    position: relative;
+}
+
+.my-message .fa-solid.fa-chevron-down {
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: #cdced4;
+    margin: .3rem;
+}
+
+.my-message .fa-solid.fa-chevron-down:hover{
+    cursor: pointer;
 }
