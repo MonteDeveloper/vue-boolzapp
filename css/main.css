@@ -109,6 +109,11 @@ img[alt="profileImage"]{
     overflow-y: auto;
 }
 
+.my-contactHover:hover{
+    cursor: pointer;
+    background-color: #e9ebeb;
+}
+
 input{
     font-size: .7rem !important;
 }
