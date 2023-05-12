@@ -3,6 +3,15 @@ const { createApp } = Vue;
 createApp({
     data() {
         return {
+            rndAnswers: [
+                "Ok!",
+                "Certo!",
+                "Probabile",
+                "Ci mancherebbe XD",
+                "Forse",
+                "Hai ragione!",
+                "Non penso"
+            ],
             contacts: [
                 {
                     name: 'Michele',
@@ -201,7 +210,8 @@ createApp({
             this.contacts[contactIndex].visible = true;
         },
         pushMessageToChat(){
-            let visibleContact = this.contacts[this.getVisibleContactIndex()]
+            let visibleContactIndex = this.getVisibleContactIndex();
+            let visibleContact = this.contacts[visibleContactIndex];
             visibleContact.messages.push(
                 {
                     date: this.getCurrentTime(),
@@ -210,6 +220,9 @@ createApp({
                 }
             )
             visibleContact.inputMessage = "";
+            setTimeout(() => {
+                this.receiveRndMessageToChat(visibleContactIndex);
+            }, 1000);
         },
         getCurrentTime(){
             const now = new Date();
@@ -220,6 +233,16 @@ createApp({
             const minutes = now.getMinutes().toString().padStart(2, '0');
             const seconds = now.getSeconds().toString().padStart(2, '0');
             return `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
+        },
+        receiveRndMessageToChat(contactIndex){
+            const randomIndex = Math.floor(Math.random() * this.rndAnswers.length);
+            this.contacts[contactIndex].messages.push(
+                {
+                    date: this.getCurrentTime(),
+                    message: this.rndAnswers[randomIndex],
+                    status: 'received'
+                }
+            )
         }
     }
 }).mount('#app')
