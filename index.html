@@ -18,7 +18,7 @@
     <!-- APP CONTAINER -->
     <div id="app" class="d-flex">
         <!-- CHAT LIST BOX -->
-        <div class="vh-100 col-4">
+        <div class="vh-100 col-4" id="chatListBox">
             <!-- ACCOUNT -->
             <section class="d-flex justify-content-between my-bgSecondary my-topBarHeight">
                 <div class="d-flex align-items-center p-2">
@@ -112,7 +112,6 @@
                                 </div>
                                 <i v-show="message.showIcon" class="fa-solid fa-chevron-down" data-bs-toggle="dropdown" aria-expanded="false" :ref="`dropdown${index}`"></i>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#" @click="">Message Info</a></li>
                                     <li><a class="dropdown-item" href="#" @click="deleteMessage(index)">Delete Message</a></li>
                                 </ul>
                             </div>

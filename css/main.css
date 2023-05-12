@@ -98,7 +98,6 @@ img[alt="profileImage"]{
     height: calc(100vh - 100px);
     background-image: url("../img/mine.jpg");
     overflow-y: auto;
-
 }
 
 #activeNotificationSection{
@@ -108,6 +107,10 @@ img[alt="profileImage"]{
 #chatListSection{
     height: calc(100vh - 100px - 25px - 16px);
     overflow-y: auto;
+}
+
+#chatListBox{
+    min-width: 200px;
 }
 
 .my-contactHover:hover{
