@@ -7,7 +7,7 @@ createApp({
             emojiBoxView: false,
             isMobile: false,
             isChatListView: true,
-            maxMobilePx: 480,
+            maxMobilePx: 760,
             searchInput: "",
             rndAnswers: [
                 "È certo",
@@ -272,6 +272,7 @@ createApp({
                 }
             )
             visibleContact.inputMessage = "";
+            this.emojiBoxView = false;
 
             setTimeout(() => {
                 this.receiveRndMessageToChat(visibleContactIndex);

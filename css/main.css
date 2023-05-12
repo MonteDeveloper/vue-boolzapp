@@ -1,6 +1,5 @@
 body{
-    font-size: .7rem !important;
-    font-weight: 500 !important;
+    font-size: 1rem !important;
 }
 
 /* ? COLORS----------------------------------- */
@@ -69,30 +68,30 @@ body{
 img[alt="profileImage"]{
     clip-path: circle();
     /* height: 100%; da problemi su mobile */
-    height: 34px;
+    height: 64px;
 }
 
 /* ? SIZES------------------------------------ */
 .my-topBarHeight{
-    height: 50px;
+    height: 80px;
 }
 
 .my-chatBarHeight{
-    height: 60px;
+    height: 80px;
 }
 
 .my-topBarHeight .fa-solid, .my-topBarHeight .fa-regular{
-    width: 25px;
+    width: 35px;
     text-align: center;
-    font-size: .9rem;
+    font-size: 1.4rem;
 }
 
 .fa-bell-slash{
     clip-path: circle();
-    height: 35px;
-    width: 35px;
+    height: 55px;
+    width: 55px;
     text-align: center;
-    line-height: 35px !important;
+    line-height: 55px !important;
 }
 
 #chatBoxSection{
@@ -102,7 +101,7 @@ img[alt="profileImage"]{
 }
 
 #activeNotificationSection{
-    height: 50px;
+    height: 70px;
 }
 
 #chatListSection{
@@ -113,16 +112,16 @@ img[alt="profileImage"]{
 
 @supports (height: 100dvh) {
     #chatListSection{
-        height: calc(100dvh - 100px - 25px - 16px);
+        height: calc(100dvh - 150px - 64px);
     }
     #chatBoxSection{
-        height: calc(100dvh - 100px);
+        height: calc(100dvh - 160px);
     }
 }
 
-#chatListBox{
-    min-width: 200px;
-}
+/* #chatListBox{
+    min-width: 415px;
+} */
 
 .my-contactHover:hover{
     cursor: pointer;
@@ -165,7 +164,7 @@ input{
     top: 0;
     left: 0;
     transform: translate(0, -105%);
-    width: 170px;
+    width: 230px;
 }
 
 .my-emojiBox > div{

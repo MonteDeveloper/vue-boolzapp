@@ -38,7 +38,7 @@
                 <section>
                     <div class="d-flex align-items-center my-bgInfo px-2" id="activeNotificationSection">
                         <i class="fa-solid fa-bell-slash my-textInfo bg-white"></i>
-                        <div class="d-flex flex-column justify-content-center p-1">
+                        <div class="d-flex flex-column justify-content-center m-2">
                             <span>Ricevi notifiche di nuovi messaggi</span>
                             <small class="text-decoration-underline my-textSecondary">Attiva notifiche desktop</small>
                         </div>
@@ -50,7 +50,7 @@
                     <div class="p-2 my-bgSecondary">
                         <div class="my-middleBox flex-fill">
                             <i class="fa fa-search"></i>
-                            <input type="text" class="form-control" placeholder="Cerca o inizia una nuova chat" v-model="searchInput">
+                            <input type="text" class="form-control fs-4 p-4" placeholder="Cerca o inizia una nuova chat" v-model="searchInput">
                         </div>
                     </div>
                 </section>
@@ -133,17 +133,17 @@
                     <div class="d-flex align-items-center my-textSecondary position-relative">
                         <i class="fa-regular fa-face-smile" @click="emojiBoxView = !emojiBoxView"></i>
                         <div v-if="emojiBoxView" class="my-emojiBox text-center">
-                            <p class="m-1 pe-none">EMOTICON</p>
+                            <p class="m-1 user-select-none">EMOTICON</p>
                             <hr class="m-0">
                             <div class="d-flex flex-wrap justify-content-center text-warning gap-1 py-2">
-                                <button v-for="emoji in emojiList" class="btn btn-light fs-6" @click="addTextToMessageInput($event.target.textContent.trim())">
+                                <button v-for="emoji in emojiList" class="btn btn-light fs-4" @click="addTextToMessageInput($event.target.textContent.trim())">
                                     {{emoji}}
                                 </button>
                             </div>
                         </div>
                     </div>
     
-                    <input type="text" class="form-control mx-2" placeholder="Scrivi un messaggio" v-model="contacts[getVisibleContactIndex()].inputMessage" @keyup.enter="pushMessageToChat()" id="textMsgInput">
+                    <input type="text" class="form-control mx-2 fs-4" placeholder="Scrivi un messaggio" v-model="contacts[getVisibleContactIndex()].inputMessage" @keyup.enter="pushMessageToChat(); $event.target.blur()" id="textMsgInput">
     
     
                     <div class="d-flex align-items-center my-textSecondary">
