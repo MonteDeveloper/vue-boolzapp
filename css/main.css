@@ -68,7 +68,8 @@ body{
 /* ? IMAGES----------------------------------- */
 img[alt="profileImage"]{
     clip-path: circle();
-    height: 100%;
+    /* height: 100%; da problemi su mobile */
+    height: 34px;
 }
 
 /* ? SIZES------------------------------------ */
@@ -107,6 +108,16 @@ img[alt="profileImage"]{
 #chatListSection{
     height: calc(100vh - 100px - 25px - 16px);
     overflow-y: auto;
+    overflow-x: hidden;
+}
+
+@supports (height: 100dvh) {
+    #chatListSection{
+        height: calc(100dvh - 100px - 25px - 16px);
+    }
+    #chatBoxSection{
+        height: calc(100dvh - 100px);
+    }
 }
 
 #chatListBox{

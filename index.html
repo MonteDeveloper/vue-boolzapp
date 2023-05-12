@@ -16,139 +16,141 @@
 
 <body>
     <!-- APP CONTAINER -->
-    <div id="app" class="d-flex">
-        <!-- CHAT LIST BOX -->
-        <div v-if="isChatListView || !isMobile" class="vh-100 col-4" id="chatListBox" :class="{'w-100': isMobile}">
-            <!-- ACCOUNT -->
-            <section class="d-flex justify-content-between my-bgSecondary my-topBarHeight">
-                <div class="d-flex align-items-center p-2">
-                    <img src="./img/avatar_io.jpg" alt="profileImage">
-                    <span class="m-0 ms-2">Sofia</span>
-                </div>
-
-                <div class="d-flex align-items-center p-2 my-textSecondary">
-                    <i class="fa-solid fa-circle-notch"></i>
-                    <i class="fa-solid fa-message"></i>
-                    <i class="fa-solid fa-ellipsis-vertical"></i>
-                </div>
-            </section>
-            
-            <!-- ACTIVE NOTIFICATION -->
-            <section>
-                <div class="d-flex align-items-center my-bgInfo px-2" id="activeNotificationSection">
-                    <i class="fa-solid fa-bell-slash my-textInfo bg-white"></i>
-                    <div class="d-flex flex-column justify-content-center p-1">
-                        <span>Ricevi notifiche di nuovi messaggi</span>
-                        <small class="text-decoration-underline my-textSecondary">Attiva notifiche desktop</small>
+    <div id="app">
+        <div class="d-flex">
+            <!-- CHAT LIST BOX -->
+            <div v-if="isChatListView || !isMobile" class="vh-100 col-4" id="chatListBox" :class="{'vw-100': isMobile}">
+                <!-- ACCOUNT -->
+                <section class="d-flex justify-content-between my-bgSecondary my-topBarHeight">
+                    <div class="d-flex align-items-center p-2">
+                        <img src="./img/avatar_io.jpg" alt="profileImage">
+                        <span class="m-0 ms-2">Sofia</span>
                     </div>
-                </div>
-            </section>
-
-            <!-- SEARCHBAR -->
-            <section id="searchBarSection">
-                <div class="p-2 my-bgSecondary">
-                    <div class="my-middleBox flex-fill">
-                        <i class="fa fa-search"></i>
-                        <input type="text" class="form-control" placeholder="Cerca o inizia una nuova chat" v-model="searchInput">
+    
+                    <div class="d-flex align-items-center p-2 my-textSecondary">
+                        <i class="fa-solid fa-circle-notch"></i>
+                        <i class="fa-solid fa-message"></i>
+                        <i class="fa-solid fa-ellipsis-vertical"></i>
                     </div>
-                </div>
-            </section>
-
-            <!-- CHAT LIST -->
-            <section id="chatListSection">
-                <div v-for="(contact, index) in contacts">
-                    <div v-if="isThisContactSearched(index)" class="d-flex my-chatBarHeight justify-content-between p-2" 
-                    :class="{'my-bgActive': contact.visible && !isMobile, 'my-contactHover': !contact.visible}" 
-                    @click="selectChatOfIndex(index); isChatListView = false">
-                        <div class="d-flex">
-                            <div>
-                                <img :src="contact.avatar" alt="profileImage">
-                            </div>
-                            <div class="d-flex flex-column justify-content-center mx-2">
-                                <span>{{contact.name}}</span>
-                                <div class="my-textOneLine">
-                                    <small class="my-textTertiary">{{contact.messages[contact.messages.length - 1].message}}</small>
+                </section>
+                
+                <!-- ACTIVE NOTIFICATION -->
+                <section>
+                    <div class="d-flex align-items-center my-bgInfo px-2" id="activeNotificationSection">
+                        <i class="fa-solid fa-bell-slash my-textInfo bg-white"></i>
+                        <div class="d-flex flex-column justify-content-center p-1">
+                            <span>Ricevi notifiche di nuovi messaggi</span>
+                            <small class="text-decoration-underline my-textSecondary">Attiva notifiche desktop</small>
+                        </div>
+                    </div>
+                </section>
+    
+                <!-- SEARCHBAR -->
+                <section id="searchBarSection">
+                    <div class="p-2 my-bgSecondary">
+                        <div class="my-middleBox flex-fill">
+                            <i class="fa fa-search"></i>
+                            <input type="text" class="form-control" placeholder="Cerca o inizia una nuova chat" v-model="searchInput">
+                        </div>
+                    </div>
+                </section>
+    
+                <!-- CHAT LIST -->
+                <section id="chatListSection">
+                    <div v-for="(contact, index) in contacts">
+                        <div v-if="isThisContactSearched(index)" class="d-flex my-chatBarHeight justify-content-between p-2" 
+                        :class="{'my-bgActive': contact.visible && !isMobile, 'my-contactHover': !contact.visible}" 
+                        @click="selectChatOfIndex(index); isChatListView = false">
+                            <div class="d-flex">
+                                <div>
+                                    <img :src="contact.avatar" alt="profileImage">
+                                </div>
+                                <div class="d-flex flex-column justify-content-center mx-2">
+                                    <span>{{contact.name}}</span>
+                                    <div class="my-textOneLine">
+                                        <small class="my-textTertiary">{{contact.messages[contact.messages.length - 1].message}}</small>
+                                    </div>
                                 </div>
                             </div>
+                            <div>
+                                <span class="my-textSecondary">{{formatHourOfDateStr(contact.messages[contact.messages.length - 1].date)}}</span>
+                            </div>
+                        </div>
+                        <hr class="my-textTertiary m-0">
+                    </div>
+                    
+                </section>
+            </div>
+    
+            <!-- CHAT SELECTED BOX-->
+            <div v-if="!isChatListView || !isMobile" class="bg-success vh-100 flex-grow-1">
+                <!-- TOP BAR PROFILE -->
+                <section class="d-flex my-bgSecondary my-topBarHeight justify-content-between p-2 border-start border-white">
+                    <div class="d-flex">
+                        <div v-if="isMobile" class="d-flex align-items-center p-2 my-textSecondary" @click="isChatListView = true">
+                            <i class="fa-solid fa-chevron-left"></i>
                         </div>
                         <div>
-                            <span class="my-textSecondary">{{formatHourOfDateStr(contact.messages[contact.messages.length - 1].date)}}</span>
+                            <img :src="contacts[getVisibleContactIndex()].avatar" alt="profileImage">
+                        </div>
+                        <div class="d-flex flex-column justify-content-center p-2">
+                            <span>{{contacts[getVisibleContactIndex()].name}}</span>
+                            <small class="my-textSecondary">Ultimo accesso oggi alle {{formatHourOfDateStr(contacts[getVisibleContactIndex()].messages[contacts[getVisibleContactIndex()].messages.length - 1].date)}}</small>
                         </div>
                     </div>
-                    <hr class="my-textTertiary m-0">
-                </div>
-                
-            </section>
-        </div>
-
-        <!-- CHAT SELECTED BOX-->
-        <div v-if="!isChatListView || !isMobile" class="bg-success vh-100 flex-grow-1">
-            <!-- TOP BAR PROFILE -->
-            <section class="d-flex my-bgSecondary my-topBarHeight justify-content-between p-2 border-start border-white">
-                <div class="d-flex">
-                    <div v-if="isMobile" class="d-flex align-items-center p-2 my-textSecondary" @click="isChatListView = true">
-                        <i class="fa-solid fa-chevron-left"></i>
+                    <div class="d-flex align-items-center p-2 my-textSecondary">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <i class="fa-solid fa-paperclip"></i>
+                        <i class="fa-solid fa-ellipsis-vertical"></i>
                     </div>
-                    <div>
-                        <img :src="contacts[getVisibleContactIndex()].avatar" alt="profileImage">
-                    </div>
-                    <div class="d-flex flex-column justify-content-center p-2">
-                        <span>{{contacts[getVisibleContactIndex()].name}}</span>
-                        <small class="my-textSecondary">Ultimo accesso oggi alle {{formatHourOfDateStr(contacts[getVisibleContactIndex()].messages[contacts[getVisibleContactIndex()].messages.length - 1].date)}}</small>
-                    </div>
-                </div>
-                <div class="d-flex align-items-center p-2 my-textSecondary">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                    <i class="fa-solid fa-paperclip"></i>
-                    <i class="fa-solid fa-ellipsis-vertical"></i>
-                </div>
-            </section>
-
-            <!-- CHAT -->
-            <section id="chatBoxSection">
-                <div class="px-5 py-3">             
-                    <div v-for="(message, index) in contacts[getVisibleContactIndex()].messages">
-                        <!-- MESSAGGI -->
-                        <div class="d-flex my-2" :class="{'justify-content-end': message.status == 'sent'}">
-                            <div class="my-message d-flex justify-content-between rounded" :class="{'my-bgMessage': message.status == 'sent', 'my-bgPrimary': message.status != 'sent'}" @mouseover="message.showIcon = true" @mouseleave="message.showIcon = false">
-                                <p class="m-2">
-                                    {{message.message}}
-                                </p>
-                                <div class="d-flex flex-column justify-content-end me-1">
-                                    <small class="my-textTertiary">{{formatHourOfDateStr(message.date)}}</small>
+                </section>
+    
+                <!-- CHAT -->
+                <section id="chatBoxSection">
+                    <div class="p-3">             
+                        <div v-for="(message, index) in contacts[getVisibleContactIndex()].messages">
+                            <!-- MESSAGGI -->
+                            <div class="d-flex my-2" :class="{'justify-content-end': message.status == 'sent'}">
+                                <div class="my-message d-flex justify-content-between rounded" :class="{'my-bgMessage': message.status == 'sent', 'my-bgPrimary': message.status != 'sent'}" @mouseover="message.showIcon = true" @mouseleave="message.showIcon = false">
+                                    <p class="m-2">
+                                        {{message.message}}
+                                    </p>
+                                    <div class="d-flex flex-column justify-content-end me-1">
+                                        <small class="my-textTertiary">{{formatHourOfDateStr(message.date)}}</small>
+                                    </div>
+                                    <i v-show="message.showIcon" class="fa-solid fa-chevron-down" data-bs-toggle="dropdown" aria-expanded="false" :ref="`dropdown${index}`"></i>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="#" @click="deleteMessage(index)">Delete Message</a></li>
+                                    </ul>
                                 </div>
-                                <i v-show="message.showIcon" class="fa-solid fa-chevron-down" data-bs-toggle="dropdown" aria-expanded="false" :ref="`dropdown${index}`"></i>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#" @click="deleteMessage(index)">Delete Message</a></li>
-                                </ul>
+                            </div>
+                        </div>            
+                    </div>
+                </section>
+    
+                <!-- TEXT INPUT BAR -->
+                <section class="d-flex my-bgSecondary my-topBarHeight justify-content-between p-2">
+                    <div class="d-flex align-items-center my-textSecondary position-relative">
+                        <i class="fa-regular fa-face-smile" @click="emojiBoxView = !emojiBoxView"></i>
+                        <div v-if="emojiBoxView" class="my-emojiBox text-center">
+                            <p class="m-1 pe-none">EMOTICON</p>
+                            <hr class="m-0">
+                            <div class="d-flex flex-wrap justify-content-center text-warning gap-1 py-2">
+                                <button v-for="emoji in emojiList" class="btn btn-light fs-6" @click="addTextToMessageInput($event.target.textContent.trim())">
+                                    {{emoji}}
+                                </button>
                             </div>
                         </div>
-                    </div>            
-                </div>
-            </section>
-
-            <!-- TEXT INPUT BAR -->
-            <section class="d-flex my-bgSecondary my-topBarHeight justify-content-between p-2">
-                <div class="d-flex align-items-center my-textSecondary position-relative">
-                    <i class="fa-regular fa-face-smile" @click="emojiBoxView = !emojiBoxView"></i>
-                    <div v-if="emojiBoxView" class="my-emojiBox text-center">
-                        <p class="m-1 pe-none">EMOTICON</p>
-                        <hr class="m-0">
-                        <div class="d-flex flex-wrap justify-content-center text-warning gap-1 py-2">
-                            <button v-for="emoji in emojiList" class="btn btn-light fs-6" @click="addTextToMessageInput($event.target.textContent.trim())">
-                                {{emoji}}
-                            </button>
-                        </div>
                     </div>
-                </div>
-
-                <input type="text" class="form-control mx-2" placeholder="Scrivi un messaggio" v-model="contacts[getVisibleContactIndex()].inputMessage" @keyup.enter="pushMessageToChat()" id="textMsgInput">
-
-
-                <div class="d-flex align-items-center my-textSecondary">
-                    <i class="fa-solid fa-microphone"></i>
-                </div>
-            </section>
+    
+                    <input type="text" class="form-control mx-2" placeholder="Scrivi un messaggio" v-model="contacts[getVisibleContactIndex()].inputMessage" @keyup.enter="pushMessageToChat()" id="textMsgInput">
+    
+    
+                    <div class="d-flex align-items-center my-textSecondary">
+                        <i class="fa-solid fa-microphone"></i>
+                    </div>
+                </section>
+            </div>
         </div>
     </div>
 
