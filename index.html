@@ -129,11 +129,20 @@
 
             <!-- TEXT INPUT BAR -->
             <section class="d-flex my-bgSecondary my-topBarHeight justify-content-between p-2">
-                <div class="d-flex align-items-center my-textSecondary">
-                    <i class="fa-regular fa-face-smile"></i>
+                <div class="d-flex align-items-center my-textSecondary position-relative">
+                    <i class="fa-regular fa-face-smile" @click="emojiBoxView = !emojiBoxView"></i>
+                    <div v-if="emojiBoxView" class="my-emojiBox text-center">
+                        <p class="m-1 pe-none">EMOTICON</p>
+                        <hr class="m-0">
+                        <div class="d-flex flex-wrap justify-content-center text-warning gap-1 py-2">
+                            <button v-for="emoji in emojiList" class="btn btn-light fs-6" @click="addTextToMessageInput($event.target.textContent.trim())">
+                                {{emoji}}
+                            </button>
+                        </div>
+                    </div>
                 </div>
 
-                <input type="text" class="form-control mx-2" placeholder="Scrivi un messaggio" v-model="contacts[getVisibleContactIndex()].inputMessage" @keyup.enter="pushMessageToChat()">
+                <input type="text" class="form-control mx-2" placeholder="Scrivi un messaggio" v-model="contacts[getVisibleContactIndex()].inputMessage" @keyup.enter="pushMessageToChat()" id="textMsgInput">
 
 
                 <div class="d-flex align-items-center my-textSecondary">

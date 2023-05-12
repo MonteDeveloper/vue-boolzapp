@@ -144,3 +144,20 @@ input{
     height: 1rem;
     overflow: hidden;
 }
+
+.my-emojiBox{
+    position: absolute;
+    background-color: white;
+    border-radius: .5rem;
+    padding: .2rem;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    transform: translate(0, -105%);
+    width: 170px;
+}
+
+.my-emojiBox > div{
+    height: 200px;
+    overflow-y: auto;
+}

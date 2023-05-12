@@ -4,6 +4,7 @@ const { createApp } = Vue;
 createApp({
     data() {
         return {
+            emojiBoxView: false,
             isMobile: false,
             isChatListView: true,
             maxMobilePx: 480,
@@ -231,7 +232,8 @@ createApp({
                         }
                     ],
                 }
-            ]            
+            ],
+            emojiList: ['😃', '😆', '😂', '😅', '😉', '😍', '🥰', '😘', '😋', '😝', '😜', '😎', '😴', '🥺', '😢', '😭', '😫', '😰', '😱', '😡', '😈']
         }
     },
     mounted() {
@@ -308,6 +310,10 @@ createApp({
         },
         checkIfMobile() {
             this.isMobile = window.innerWidth <= this.maxMobilePx;
+        },
+        addTextToMessageInput(text){
+            this.contacts[this.getVisibleContactIndex()].inputMessage += text; 
+            document.getElementById('textMsgInput').focus();
         }
     }
 }).mount('#app')
