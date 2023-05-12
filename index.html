@@ -134,7 +134,7 @@
                     <i class="fa-regular fa-face-smile"></i>
                 </div>
 
-                <input type="text" class="form-control mx-2" placeholder="Scrivi un messaggio">
+                <input type="text" class="form-control mx-2" placeholder="Scrivi un messaggio" v-model="contacts[getVisibleContactIndex()].inputMessage" @keyup.enter="pushMessageToChat()">
 
 
                 <div class="d-flex align-items-center my-textSecondary">

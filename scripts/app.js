@@ -8,6 +8,7 @@ createApp({
                     name: 'Michele',
                     avatar: './img/avatar_1.jpg',
                     visible: true,
+                    inputMessage: "",
                     messages: [
                         {
                             date: '10/01/2020 15:30:55',
@@ -30,6 +31,7 @@ createApp({
                     name: 'Fabio',
                     avatar: './img/avatar_2.jpg',
                     visible: false,
+                    inputMessage: "",
                     messages: [
                         {
                             date: '20/03/2020 16:30:00',
@@ -52,6 +54,7 @@ createApp({
                     name: 'Samuele',
                     avatar: './img/avatar_3.jpg',
                     visible: false,
+                    inputMessage: "",
                     messages: [
                         {
                             date: '28/03/2020 10:10:40',
@@ -74,6 +77,7 @@ createApp({
                     name: 'Alessandro B.',
                     avatar: './img/avatar_4.jpg',
                     visible: false,
+                    inputMessage: "",
                     messages: [
                         {
                             date: '10/01/2020 15:30:55',
@@ -91,6 +95,7 @@ createApp({
                     name: 'Alessandro L.',
                     avatar: './img/avatar_5.jpg',
                     visible: false,
+                    inputMessage: "",
                     messages: [
                         {
                             date: '10/01/2020 15:30:55',
@@ -108,6 +113,7 @@ createApp({
                     name: 'Claudia',
                     avatar: './img/avatar_5.jpg',
                     visible: false,
+                    inputMessage: "",
                     messages: [
                         {
                             date: '10/01/2020 15:30:55',
@@ -130,6 +136,7 @@ createApp({
                     name: 'Federico',
                     avatar: './img/avatar_7.jpg',
                     visible: false,
+                    inputMessage: "",
                     messages: [
                         {
                             date: '10/01/2020 15:30:55',
@@ -147,6 +154,7 @@ createApp({
                     name: 'Davide',
                     avatar: './img/avatar_8.jpg',
                     visible: false,
+                    inputMessage: "",
                     messages: [
                         {
                             date: '10/01/2020 15:30:55',
@@ -191,6 +199,17 @@ createApp({
         selectChatOfIndex(contactIndex){
             this.contacts[this.getVisibleContactIndex()].visible = false;
             this.contacts[contactIndex].visible = true;
+        },
+        pushMessageToChat(){
+            let visibleContact = this.contacts[this.getVisibleContactIndex()]
+            visibleContact.messages.push(
+                {
+                    date: '10/01/2020 15:50:00',
+                    message: visibleContact.inputMessage,
+                    status: 'sent'
+                }
+            )
+            visibleContact.inputMessage = "";
         }
     }
 }).mount('#app')
