@@ -3,15 +3,18 @@
 
 <head>
     <meta charset='utf-8'>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=0, viewport-fit=cover"'>
     
     <title>BOOLZAP</title>
 
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
-    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#391774">
+    <!-- meta tag mobile app -->
+    <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+    <link rel="manifest" href="./site.webmanifest">
+    <link rel="mask-icon" href="./safari-pinned-tab.svg" color="#391774">
+    <meta name="apple-mobile-web-app-title" content="Stranger Messanger">
+    <meta name="application-name" content="Stranger Messanger">
     <meta name="msapplication-TileColor" content="#391774">
     <meta name="theme-color" content="#dddddd">
 
@@ -95,7 +98,7 @@
                 <!-- TOP BAR PROFILE -->
                 <section class="d-flex my-bgSecondary my-topBarHeight justify-content-between p-2 border-start border-white">
                     <div class="d-flex">
-                        <div v-if="isMobile" class="d-flex align-items-center p-2 my-textSecondary" @click="isChatListView = true">
+                        <div v-if="isMobile" class="d-flex align-items-center my-textSecondary" @click="isChatListView = true">
                             <i class="fa-solid fa-chevron-left"></i>
                         </div>
                         <div>
@@ -138,7 +141,7 @@
     
                 <!-- TEXT INPUT BAR -->
                 <section class="d-flex my-bgSecondary my-topBarHeight justify-content-between p-2">
-                    <div class="d-flex align-items-center my-textSecondary position-relative">
+                    <div class="d-flex align-items-center my-textSecondary position-relative" :class="{'mb-3': isMobile}">
                         <i class="fa-regular fa-face-smile" @click="emojiBoxView = !emojiBoxView"></i>
                         <div v-if="emojiBoxView" class="my-emojiBox text-center">
                             <p class="m-1 user-select-none">EMOTICON</p>
@@ -151,10 +154,10 @@
                         </div>
                     </div>
     
-                    <input type="text" class="form-control mx-2 fs-4" placeholder="Scrivi un messaggio" v-model="contacts[getVisibleContactIndex()].inputMessage" @keyup.enter="pushMessageToChat(); $event.target.blur()" id="textMsgInput">
+                    <input type="text" class="form-control mx-2 fs-4" :class="{'mb-3': isMobile}" placeholder="Scrivi un messaggio" v-model="contacts[getVisibleContactIndex()].inputMessage" @keyup.enter="pushMessageToChat(); $event.target.blur()" id="textMsgInput">
     
     
-                    <div class="d-flex align-items-center my-textSecondary">
+                    <div class="d-flex align-items-center my-textSecondary" :class="{'mb-3': isMobile}">
                         <i class="fa-solid fa-microphone"></i>
                     </div>
                 </section>
