@@ -3,6 +3,7 @@ const { createApp } = Vue;
 createApp({
     data() {
         return {
+            searchInput: "",
             rndAnswers: [
                 "Ok!",
                 "Certo!",
@@ -243,6 +244,9 @@ createApp({
                     status: 'received'
                 }
             )
+        },
+        isThisContactSearched(contactIndex){
+            return this.contacts[contactIndex].name.toLowerCase().startsWith(this.searchInput.toLowerCase());
         }
     }
 }).mount('#app')
