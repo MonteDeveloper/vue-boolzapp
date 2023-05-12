@@ -124,6 +124,7 @@ input{
 
 .my-message{
     position: relative;
+    max-width: 55%;
 }
 
 .my-message .fa-solid.fa-chevron-down {
@@ -136,4 +137,10 @@ input{
 
 .my-message .fa-solid.fa-chevron-down:hover{
     cursor: pointer;
+}
+
+.my-textOneLine{
+    line-height: 1rem;
+    height: 1rem;
+    overflow: hidden;
 }

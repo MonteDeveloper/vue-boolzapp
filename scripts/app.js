@@ -4,15 +4,41 @@ const { createApp } = Vue;
 createApp({
     data() {
         return {
+            isMobile: false,
+            isChatListView: true,
+            maxMobilePx: 480,
             searchInput: "",
             rndAnswers: [
-                "Ok!",
-                "Certo!",
-                "Probabile",
-                "Ci mancherebbe XD",
-                "Forse",
-                "Hai ragione!",
-                "Non penso"
+                "È certo",
+                "È decisamente così",
+                "Senza alcun dubbio",
+                "Sì, sicuramente",
+                "Puoi contarci",
+                "Per come la vedo io, sì",
+                "Molto probabilmente",
+                "Le prospettive sono buone",
+                "Sì",
+                "I segni indicano di sì",
+                "Risposta nebulosa, riprova",
+                "Chiedi di nuovo più tardi",
+                "Meglio non dirtelo adesso",
+                "Non posso prevederlo ora",
+                "Concentrati e riprova",
+                "Non ci contare",
+                "La mia risposta è no",
+                "Le mie fonti dicono di no",
+                "Le prospettive non sono così buone",
+                "Molto incerto",
+                "Non sono sicuro, ma ho una sensazione positiva al riguardo",
+                "La risposta è nel tuo cuore",
+                "Solo il tempo potrà dirlo",
+                "La risposta è scritta nelle stelle",
+                "La vedo difficile, ci vorrebbero le 7 sfere del drago per far sì che si avveri.",
+                "Non so se sia possibile, ma se hai abbastanza forza di volontà potresti diventare un Super Saiyan, che è molto più bello",
+                "Non credo proprio, neanche se dovesse colpirmi un fulmine di Pikachu",
+                "Non ne ho idea, ma la risposta è sicuramente 42",
+                "Solo dopo che Bowser avrà sposato finalmente Peach",
+                "Sì, quando sarà finito One Piece"
             ],
             contacts: [
                 {
@@ -209,7 +235,8 @@ createApp({
         }
     },
     mounted() {
-        console.log(this.var1);
+        this.checkIfMobile();
+        window.addEventListener('resize', this.checkIfMobile);
     },
     methods: {
         getVisibleContactIndex(){
@@ -278,6 +305,9 @@ createApp({
             this.$refs[`dropdown${messageIndex}`][0].click();
             // Rimuovi il messaggio dall'array
             this.contacts[this.getVisibleContactIndex()].messages.splice(messageIndex, 1);
+        },
+        checkIfMobile() {
+            this.isMobile = window.innerWidth <= this.maxMobilePx;
         }
     }
 }).mount('#app')

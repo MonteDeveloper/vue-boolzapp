@@ -18,7 +18,7 @@
     <!-- APP CONTAINER -->
     <div id="app" class="d-flex">
         <!-- CHAT LIST BOX -->
-        <div class="vh-100 col-4" id="chatListBox">
+        <div v-if="isChatListView || !isMobile" class="vh-100 col-4" id="chatListBox" :class="{'w-100': isMobile}">
             <!-- ACCOUNT -->
             <section class="d-flex justify-content-between my-bgSecondary my-topBarHeight">
                 <div class="d-flex align-items-center p-2">
@@ -57,14 +57,18 @@
             <!-- CHAT LIST -->
             <section id="chatListSection">
                 <div v-for="(contact, index) in contacts">
-                    <div v-if="isThisContactSearched(index)" class="d-flex my-chatBarHeight justify-content-between p-2" :class="{'my-bgActive': contact.visible, 'my-contactHover': !contact.visible}" @click="selectChatOfIndex(index)">
+                    <div v-if="isThisContactSearched(index)" class="d-flex my-chatBarHeight justify-content-between p-2" 
+                    :class="{'my-bgActive': contact.visible && !isMobile, 'my-contactHover': !contact.visible}" 
+                    @click="selectChatOfIndex(index); isChatListView = false">
                         <div class="d-flex">
                             <div>
                                 <img :src="contact.avatar" alt="profileImage">
                             </div>
-                            <div class="d-flex flex-column justify-content-center p-2">
+                            <div class="d-flex flex-column justify-content-center mx-2">
                                 <span>{{contact.name}}</span>
-                                <small class="my-textTertiary">{{contact.messages[contact.messages.length - 1].message}}</small>
+                                <div class="my-textOneLine">
+                                    <small class="my-textTertiary">{{contact.messages[contact.messages.length - 1].message}}</small>
+                                </div>
                             </div>
                         </div>
                         <div>
@@ -78,10 +82,13 @@
         </div>
 
         <!-- CHAT SELECTED BOX-->
-        <div class="bg-success vh-100 flex-grow-1">
+        <div v-if="!isChatListView || !isMobile" class="bg-success vh-100 flex-grow-1">
             <!-- TOP BAR PROFILE -->
             <section class="d-flex my-bgSecondary my-topBarHeight justify-content-between p-2 border-start border-white">
                 <div class="d-flex">
+                    <div v-if="isMobile" class="d-flex align-items-center p-2 my-textSecondary" @click="isChatListView = true">
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </div>
                     <div>
                         <img :src="contacts[getVisibleContactIndex()].avatar" alt="profileImage">
                     </div>
