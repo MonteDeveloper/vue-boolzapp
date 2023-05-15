@@ -140,7 +140,7 @@
                 </section>
     
                 <!-- TEXT INPUT BAR -->
-                <section class="d-flex my-bgSecondary my-topBarHeight justify-content-between p-2">
+                <section class="d-flex my-bgSecondary my-topBarHeight justify-content-between p-2" id="inputMsgBar">
                     <div class="d-flex align-items-center my-textSecondary position-relative" :class="{'mb-3': isMobile}">
                         <i class="fa-regular fa-face-smile" @click="emojiBoxView = !emojiBoxView"></i>
                         <div v-if="emojiBoxView" class="my-emojiBox text-center">
@@ -157,8 +157,11 @@
                     <input type="text" class="form-control mx-2 fs-4" :class="{'mb-3': isMobile}" placeholder="Scrivi un messaggio" v-model="contacts[getVisibleContactIndex()].inputMessage" @keyup.enter="pushMessageToChat(); $event.target.blur()" id="textMsgInput">
     
     
-                    <div class="d-flex align-items-center my-textSecondary" :class="{'mb-3': isMobile}">
+                    <div v-if="contacts[getVisibleContactIndex()].inputMessage.trim().length == 0" class="d-flex align-items-center my-textSecondary" :class="{'mb-3': isMobile}">
                         <i class="fa-solid fa-microphone"></i>
+                    </div>
+                    <div v-else class="d-flex align-items-center my-textSecondary" :class="{'mb-3': isMobile}" @click="pushMessageToChat(); $event.target.blur()">
+                        <i class="fa-solid fa-circle-chevron-right my-textInfo fs-3"></i>
                     </div>
                 </section>
             </div>

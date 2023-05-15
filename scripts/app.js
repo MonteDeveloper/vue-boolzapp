@@ -264,19 +264,21 @@ createApp({
         pushMessageToChat(){
             let visibleContactIndex = this.getVisibleContactIndex();
             let visibleContact = this.contacts[visibleContactIndex];
-            visibleContact.messages.push(
-                {
-                    date: this.getCurrentTime(),
-                    message: visibleContact.inputMessage,
-                    status: 'sent'
-                }
-            )
-            visibleContact.inputMessage = "";
-            this.emojiBoxView = false;
-
-            setTimeout(() => {
-                this.receiveRndMessageToChat(visibleContactIndex);
-            }, 1000);
+            if(visibleContact.inputMessage.trim() != ""){
+                visibleContact.messages.push(
+                    {
+                        date: this.getCurrentTime(),
+                        message: visibleContact.inputMessage.trim(),
+                        status: 'sent'
+                    }
+                )
+                visibleContact.inputMessage = "";
+                this.emojiBoxView = false;
+    
+                setTimeout(() => {
+                    this.receiveRndMessageToChat(visibleContactIndex);
+                }, 1000);
+            }
         },
         getCurrentTime(){
             // const now = new Date();
