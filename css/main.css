@@ -36,7 +36,7 @@ body{
 }
 
 .my-textInfo{
-    color: #8edafc;
+    color: #44c4ff;
 }
 
 /* ? SEARCHBAR----------------------------- */
@@ -170,4 +170,8 @@ input{
 .my-emojiBox > div{
     height: 200px;
     overflow-y: auto;
+}
+
+#inputMsgBar i:hover{
+    cursor: pointer;
 }
